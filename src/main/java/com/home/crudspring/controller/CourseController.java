@@ -2,10 +2,9 @@ package com.home.crudspring.controller;
 
 import com.home.crudspring.models.Courses;
 import com.home.crudspring.repository.CourseRepository;
-import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +21,17 @@ public class CourseController {
 
     @GetMapping
     //@RequestMapping(method = RequestMethod.GET
-    public List<Courses> list(){
+    public List<Courses> list() {
         return courseRepository.findAll();
+    }
+
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public Courses create(@RequestBody Courses course) {
+        //System.out.println(course.getName());
+        return courseRepository.save(course);
+      //return ResponseEntity.status(HttpStatus.CREATED).body(courseRepository.save(course));
+
     }
 
 

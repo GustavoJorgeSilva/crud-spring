@@ -20,7 +20,9 @@ public class CrudSpringApplication {
 			courseRepository.deleteAll();
 
 			Courses course1 = new Courses("Angular-Spring","Full-stack");
+			Courses course2 = new Courses("Logica programação","iniciante");
 			courseRepository.save(course1);
+			courseRepository.save(course2);
 		};
 	}
 }
